@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<title>YAY ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    background: black;
+    color: white;
+    font-family: Arial;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+img {
+    max-width: 300px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: #00ffcc;
+    font-size: 40px;
+}
+</style>
+</head>
+
+<body>
+
+<img src="unamed.jpg">
+<h1>YAY! 🎉❤️</h1>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<title>Pentru tine ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #1a1a1a, #000);
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 600px;
+    padding: 20px;
+}
+
+button {
+    padding: 12px 25px;
+    margin: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.continue { background: #444; color: white; }
+.yes { background: #00cc88; color: white; }
+.no { background: #ff4d4d; color: white; position: relative; }
+</style>
+</head>
+
+<body>
+
+<div class="container" id="main">
+
+    <div id="step1">
+        <h1>💔</h1>
+        <p>
+            Iartă-mă pentru toate zilele când te-am supărat.<br><br>
+            Te iubesc mult și uneori greșesc, dar asta nu înseamnă că nu țin la tine foarte mult,<br>
+            sau că nu te-aș vrea forever ❤️
+        </p>
+
+        <button class="continue" onclick="nextStep()">Continuă...</button>
+    </div>
+
+</div>
+
+<script>
+function nextStep() {
+    document.getElementById("main").innerHTML = `
+        <h2>Vrei să ne vedem? 🥹</h2>
+        <button class="yes" onclick="yesClicked()">DA ❤️</button>
+        <button class="no" onmouseover="moveButton(this)">NU 😅</button>
+    `;
+}
+
+function yesClicked() {
+    window.location.href = "yay.html";
+}
+
+function moveButton(btn) {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+    btn.style.position = "absolute";
+    btn.style.left = x + "px";
+    btn.style.top = y + "px";
+}
+</script>
+
+</body>
+</html>
