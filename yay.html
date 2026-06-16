@@ -7,34 +7,120 @@
 <style>
 body {
     margin: 0;
-    background: black;
+    background: radial-gradient(circle, #111, #000);
     color: white;
     font-family: Arial;
     text-align: center;
+    overflow: hidden;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    flex-direction: column;
+}
+
+.container {
+    z-index: 2;
+    position: relative;
 }
 
 img {
-    max-width: 300px;
-    border-radius: 15px;
+    width: 250px;
+    border-radius: 20px;
     margin-bottom: 20px;
+    box-shadow: 0 0 20px rgba(255,255,255,0.2);
+    animation: fadeIn 2s ease-in;
 }
 
 h1 {
     color: #00ffcc;
-    font-size: 40px;
+    font-size: 50px;
+    animation: pop 1s ease-in-out;
+}
+
+p {
+    font-size: 18px;
+    opacity: 0;
+    animation: fadeIn 2s ease-in forwards;
+    animation-delay: 1s;
+}
+
+.heart {
+    font-size: 80px;
+    animation: pulse 1.2s infinite;
+    margin-bottom: 10px;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pop {
+    0% { transform: scale(0); }
+    80% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* confetti */
+.confetti {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    top: -10px;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<img src="unamed.jpg">
-<h1>YAY! 🎉❤️</h1>
+<div class="container">
+    <div class="heart">❤️</div>
+
+    <img src="F.jpg" alt="poza">
+
+    <h1>YAY! 🎉</h1>
+
+    <p>
+        Mersi că ai ales să rămâi aproape ❤️<br><br>
+        Nu promit perfecțiune, dar promit că o să încerc de fiecare dată să fiu mai bun pentru tine.<br><br>
+        Îmi pasă de tine mai mult decât pot spune în cuvinte.
+    </p>
+</div>
+
+<script>
+
+function createConfetti() {
+    const confetti = document.createElement("div");
+    confetti.classList.add("confetti");
+
+    confetti.style.left = Math.random() * 100 + "vw";
+    confetti.style.backgroundColor = 
+        ["#ff4d6d", "#00ffcc", "#ffffff", "#ffd166"][Math.floor(Math.random()*4)];
+
+    confetti.style.animationDuration = (Math.random() * 3 + 2) + "s";
+
+    document.body.appendChild(confetti);
+
+    setTimeout(() => confetti.remove(), 5000);
+}
+
+setInterval(createConfetti, 150);
+
+</script>
 
 </body>
 </html>
