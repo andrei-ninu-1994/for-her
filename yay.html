@@ -11,76 +11,54 @@ body {
     color: white;
     font-family: Arial;
     text-align: center;
-    overflow: hidden;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 .container {
-    z-index: 2;
-    position: relative;
-}
-
-img {
-    width: 250px;
-    border-radius: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 0 20px rgba(255,255,255,0.2);
-    animation: fadeIn 2s ease-in;
+    max-width: 700px;
 }
 
 h1 {
     color: #00ffcc;
     font-size: 50px;
-    animation: pop 1s ease-in-out;
-}
-
-p {
-    font-size: 18px;
-    opacity: 0;
-    animation: fadeIn 2s ease-in forwards;
-    animation-delay: 1s;
-}
-
-.heart {
-    font-size: 80px;
-    animation: pulse 1.2s infinite;
     margin-bottom: 10px;
 }
 
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-    100% { transform: scale(1); }
+h2 {
+    font-size: 22px;
+    margin-bottom: 30px;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+button {
+    display: block;
+    width: 260px;
+    margin: 10px auto;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
 }
 
-@keyframes pop {
-    0% { transform: scale(0); }
-    80% { transform: scale(1.2); }
-    100% { transform: scale(1); }
+button:hover {
+    transform: scale(1.05);
 }
 
-/* confetti */
-.confetti {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    top: -10px;
-    animation: fall linear infinite;
-}
+.opt1 { background: #ff4d6d; color: white; }
+.opt2 { background: #00cc88; color: white; }
+.opt3 { background: #ffd166; color: black; }
+.opt4 { background: #6c63ff; color: white; }
 
-@keyframes fall {
-    to {
-        transform: translateY(110vh) rotate(360deg);
-        opacity: 0;
-    }
+#result {
+    margin-top: 20px;
+    font-size: 18px;
+    opacity: 0;
+    transition: 0.5s;
 }
 </style>
 </head>
@@ -88,38 +66,24 @@ p {
 <body>
 
 <div class="container">
-    <div class="heart">❤️</div>
-
-    <img src="F.jpg" alt="poza">
-
     <h1>YAY! 🎉</h1>
 
-    <p>
-        Mersi că ai ales să rămâi aproape ❤️<br><br>
-        Nu promit perfecțiune, dar promit că o să încerc de fiecare dată să fiu mai bun pentru tine.<br><br>
-        Îmi pasă de tine mai mult decât pot spune în cuvinte.
-    </p>
+    <h2>Ce ai vrea să-ți gătesc Purrito? 🍳</h2>
+
+    <button class="opt1" onclick="choose('Ovăz proteic 🥣')">Ovăz proteic</button>
+    <button class="opt2" onclick="choose('Clătite proteice 🥞')">Clătite proteice</button>
+    <button class="opt3" onclick="choose('Pui cu legume 🍗')">Pui cu legume</button>
+    <button class="opt4" onclick="choose('Paste cu vită 🍝')">Paste cu vită</button>
+
+    <div id="result"></div>
 </div>
 
 <script>
-
-function createConfetti() {
-    const confetti = document.createElement("div");
-    confetti.classList.add("confetti");
-
-    confetti.style.left = Math.random() * 100 + "vw";
-    confetti.style.backgroundColor = 
-        ["#ff4d6d", "#00ffcc", "#ffffff", "#ffd166"][Math.floor(Math.random()*4)];
-
-    confetti.style.animationDuration = (Math.random() * 3 + 2) + "s";
-
-    document.body.appendChild(confetti);
-
-    setTimeout(() => confetti.remove(), 5000);
+function choose(text) {
+    const result = document.getElementById("result");
+    result.style.opacity = 1;
+    result.innerHTML = "Ai ales: <b>" + text + "</b> 😏<br>Gătesc cu drag ❤️";
 }
-
-setInterval(createConfetti, 150);
-
 </script>
 
 </body>
