@@ -67,6 +67,20 @@ button:hover {
     opacity: 0;
     transition: 0.5s;
 }
+
+/* confetti */
+.confetti {
+    position: absolute;
+    top: -20px;
+    animation: fall 2s linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(120vh);
+        opacity: 0;
+    }
+}
 </style>
 </head>
 
@@ -89,11 +103,41 @@ button:hover {
 </div>
 
 <script>
+
 function choose(text) {
     const result = document.getElementById("result");
     result.style.opacity = 1;
-    result.innerHTML = "Ai ales: <b>" + text + "</b> 😏<br>Bună alegere! Abia aștept să-ți gătesc, sa te țin in brațe și să-ți sărut toată fățuca aia drăguță! ❤️";
+
+    // confetti
+    createConfetti();
+
+    result.innerHTML = "Ai ales: <b>" + text + "</b> 😏<br>Bună alegere! ❤️";
+
+    // deschide email după 1.2 sec
+    setTimeout(() => {
+        window.location.href =
+        "mailto:andrei.ninu.1994@gmail.com" +
+        "?subject=Am ales mâncarea 🍽️" +
+        "&body=Hei ❤️%0D%0A%0D%0AAm ales: " + text + "%0D%0AAbia aștept 😊";
+    }, 1200);
 }
+
+function createConfetti() {
+    for (let i = 0; i < 30; i++) {
+        const c = document.createElement("div");
+        c.classList.add("confetti");
+        c.innerHTML = "🎉";
+
+        c.style.left = Math.random() * 100 + "vw";
+        c.style.fontSize = (Math.random() * 20 + 15) + "px";
+        c.style.animationDuration = (Math.random() * 2 + 1.5) + "s";
+
+        document.body.appendChild(c);
+
+        setTimeout(() => c.remove(), 2500);
+    }
+}
+
 </script>
 
 </body>
